@@ -5,7 +5,6 @@ import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
 import ru.netology.repository.ProductRepository;
 
-
 public class ProductManager {
     //    нанимаем репозиторий
     private ProductRepository repository;
@@ -19,6 +18,7 @@ public class ProductManager {
     public void addProduct(Product product) {
         repository.save(product);
     }
+
     //    создаем метод возвращающий массив найденных товаров
     public Product[] searchBy(String text) {
         Product[] result = new Product[0];
@@ -32,16 +32,19 @@ public class ProductManager {
         }
         return result;
     }
+
     public boolean matches(Product product, String search) {
 //        сравниваем product из ячейки с смартфоном, если = то дальше
         if (product instanceof Smartphone) {
             // положем его в переменную типа смартфон чтобы пользоваться методами класса смартфон
             Smartphone smartphone = (Smartphone) product;
             // проверим есть ли поисковое слово в данных об авторе
-            if (smartphone.getName().equalsIgnoreCase(search)) {
+//            if (smartphone.getName().equalsIgnoreCase(search)) {
+            if (smartphone.getName().contains(search)) { //тоже , что и скрытое, только для точного совпадения
                 return true;
             }
-            if (smartphone.getMarker().equalsIgnoreCase(search)) {
+//            if (smartphone.getMarker().equalsIgnoreCase(search)) { для точного совпадения
+            if (smartphone.getMarker().contains(search)) {  // тоже , что и скрытое, только по вхождению
                 return true;
             }
         }
