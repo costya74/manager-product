@@ -50,10 +50,10 @@ public class ProductManager {
         }
         if (product instanceof Book) {
             Book book = (Book) product;
-            if (book.getName().equalsIgnoreCase(search)) {
+            if (book.getName().contains(search)) {
                 return true;
             }
-            if (book.getAuthor().equalsIgnoreCase(search)) {
+            if (book.getAuthor().contains(search)) {
                 return true;
             }
         }

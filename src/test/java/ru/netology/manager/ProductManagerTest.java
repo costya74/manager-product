@@ -16,7 +16,7 @@ class ProductManagerTest {
 
     Product product1 = new Book(1, "One", 100, "AOne");
     Product product2 = new Book(2, "Second", 200, "ASecond");
-    Product product3 = new Book(3, "Third", 300, "AThird");
+    Product product3 = new Book(3, "Third", 300, "AOne");
     Product product4 = new Book(4, "Fourth", 400, "AFour");
     Product product5 = new Book(5, "Fifth", 500, "AFive");
     Product product6 = new Smartphone(6, "Sixth", 600, "MSixth");
@@ -110,7 +110,7 @@ class ProductManagerTest {
     @Test
     void searchByMakerBook() {
         Product[] actual = manager.searchBy("AOne");
-        Product[] expected = {new Book(1, "One", 100, "AOne")};
+        Product[] expected = {new Book(1, "One", 100, "AOne"), new Book(3, "THird", 300, "AOne")};
         assertArrayEquals(expected, actual);
     }
 
