@@ -37,116 +37,47 @@ class ProductManagerTest {
         manager.addProduct(product8);
         manager.addProduct(product9);
         manager.addProduct(product10);
-
-    }
-
-    @Test
-    void addProduct() {
-        repository.save(product1);
-        repository.save(product2);
-        repository.save(product3);
-        repository.save(product4);
-        repository.save(product5);
-        repository.save(product6);
-        repository.save(product7);
-        repository.save(product8);
-        repository.save(product9);
-        repository.save(product10);
-
-        Product[] actual = repository.finAll();
-        Product[] expected = {product1, product2, product3, product4, product5, product6, product7, product8, product9, product10};
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    void addProductOne() {
-        repository.save(product1);
-
-        Product[] actual = repository.finAll();
-        Product[] expected = {product1};
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    void addProductSeveral() {
-        repository.save(product4);
-        repository.save(product5);
-        repository.save(product6);
-        repository.save(product9);
-        repository.save(product10);
-
-        Product[] actual = repository.finAll();
-        Product[] expected = {product4, product5, product6, product9, product10,};
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    void addProductNull() {
-
-        Product[] actual = repository.finAll();
-        Product[] expected = {};
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    void shouldRemoveById() {
-        repository.save(product1);
-        repository.save(product2);
-        repository.save(product3);
-        repository.save(product4);
-        repository.save(product5);
-        repository.save(product6);
-        repository.save(product7);
-        repository.save(product8);
-        repository.save(product9);
-        repository.save(product10);
-
-        repository.removeById(7);
-        Product[] actual = repository.finAll();
-        Product[] expected = new Product[]{product1, product2, product3, product4, product5, product6, product8, product9, product10};
-        assertArrayEquals(expected, actual);
     }
 
     @Test
     void searchByMakerBook() {
         Product[] actual = manager.searchBy("AOne");
-        Product[] expected = {new Book(1, "One", 100, "AOne"), new Book(3, "THird", 300, "AOne")};
+        Product[] expected = new Product[] {product1, product3};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     void searchByMakerSmartphone() {
         Product[] actual = manager.searchBy("MSixth");
-        Product[] expected = {new Smartphone(6, "Sixth", 600, "MSixth")};
+        Product[] expected = new Product[] {product6};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     void searchBySmartphoneName() {
         Product[] actual = manager.searchBy("Sixth");
-        Product[] expected = {new Smartphone(6, "Sixth", 600, "MSixth")};
+        Product[] expected = new Product[] {product6};
         assertArrayEquals(expected, actual);
-
     }
 
     @Test
     void searchByBookName() {
         Product[] actual = manager.searchBy("Second");
-        Product[] expected = {new Book(2, "Second", 200, "ASecond")};
+        Product[] expected = new Product[] {product2};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     void searchByInvalidMaker() {
         Product[] actual = manager.searchBy("MEleventh");
-        Product[] expected = {};
+        Product[] expected = new Product[]{};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     void searchByInvalidAuthor() {
         Product[] actual = manager.searchBy("ASixth");
-        Product[] expected = {};
+        Product[] expected = new Product[]{};
         assertArrayEquals(expected, actual);
     }
 }
