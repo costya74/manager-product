@@ -1,6 +1,7 @@
 package ru.netology.repository;
 
 import ru.netology.domain.Book;
+import ru.netology.domain.NotFoundException;
 import ru.netology.domain.Product;
 
 public class ProductRepository {
@@ -29,6 +30,9 @@ public class ProductRepository {
 
     // удаляем по номеру id
     public void removeById(int id) {
+        if (id < 0) {
+            throw new NotFoundException("удаление не возможно, так как продукт " + id + " не существует");
+        }
         int length = items.length - 1;
         Product[] tmp = new Product[length];
         int index = 0;

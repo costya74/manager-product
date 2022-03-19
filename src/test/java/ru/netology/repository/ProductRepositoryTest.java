@@ -3,6 +3,7 @@ package ru.netology.repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
+import ru.netology.domain.NotFoundException;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
 import ru.netology.manager.ProductManager;
@@ -93,4 +94,23 @@ class ProductRepositoryTest {
         assertArrayEquals(expected, actual);
     }
 
+    @Test
+    void shouldRemoveNoExistById() {
+        repository.save(product1);
+        repository.save(product2);
+        repository.save(product3);
+        repository.save(product4);
+        repository.save(product5);
+        repository.save(product6);
+        repository.save(product7);
+        repository.save(product8);
+        repository.save(product9);
+        repository.save(product10);
+
+        assertThrows(NotFoundException.class, () -> {
+            repository.removeById(-1);
+        });
+    }
 }
+
+
