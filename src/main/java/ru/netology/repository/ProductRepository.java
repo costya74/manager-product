@@ -28,11 +28,18 @@ public class ProductRepository {
         return items;
     }
 
+    // проверяем на id на наличие
+    public Product finById(int id) {
+        for (Product item : items) {
+            if (item.getId() == id) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     // удаляем по номеру id
     public void removeById(int id) {
-        if (id < 0) {
-            throw new NotFoundException("удаление не возможно, так как продукт " + id + " не существует");
-        }
         int length = items.length - 1;
         Product[] tmp = new Product[length];
         int index = 0;
@@ -41,6 +48,9 @@ public class ProductRepository {
             if (item.getId() != id) {
                 tmp[index] = item;
                 index++;
+            }
+            if (finById(id) == null) {
+                throw new NotFoundException("удаление не возможно, так как продукт " + id + " не существует");
             }
         }
         items = tmp;

@@ -77,7 +77,7 @@ class ProductManagerTest {
     @Test
     void searchByInvalidAuthor() {
         Product[] actual = manager.searchBy("ASixth");
-        Product[] expected = new Product[]{};
+        Product[] expected = new Product[]{product6};
         assertArrayEquals(expected, actual);
     }
 }
